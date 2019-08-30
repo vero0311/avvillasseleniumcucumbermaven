@@ -1,23 +1,11 @@
 package pageobjects;
 
-import cucumber.runtime.Timeout;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AvvillasLibertyCreditPage {
-
-    public AvvillasLibertyCreditPage(WebDriver myDriver) {
-        this.myDriver = myDriver;
-        PageFactory.initElements(myDriver, this);
-    }
-
-    private WebDriver myDriver;
+public class AvvillasLibertyCreditPage extends PageBase {
 
     @FindBy(id = "i_monto_prestamo")
     private WebElement amount;
@@ -37,14 +25,14 @@ public class AvvillasLibertyCreditPage {
     @FindBy(xpath = "//span[@class=\"colorTextValiB selectorSpanValidacion\" and @ng-show=\"formularioSimulador.s_convenio.$error.required\"]")
     WebElement titleFieldAgreement;
 
-    public void changePage() {
-        for (String winHandle : myDriver.getWindowHandles()) {
-            myDriver.switchTo().window(winHandle);
-        }
+    public AvvillasLibertyCreditPage(WebDriver myDriver) {
+        super(myDriver);
     }
 
     public void setAmount(String data) {
+       super.getWait().until(ExpectedConditions.visibilityOf(amount));
         amount.sendKeys(data);
+
     }
 
     public void setTermInMonths(String months) {
@@ -54,12 +42,9 @@ public class AvvillasLibertyCreditPage {
 
     public void setCreditDestination(String opcionCreditDestination) {
 
-        WebDriverWait wait = new WebDriverWait(myDriver, 10);
-        wait.until(ExpectedConditions.textToBePresentInElement(creditDestination, "Gastos Personales"));
-
+        super.getWait().until(ExpectedConditions.textToBePresentInElement(creditDestination, "Gastos Personales"));
         creditDestination.click();
-        Select opt = new Select(creditDestination); // no entendí muy bien porque se debe declarar dentro del método y no por fuera
-        opt.selectByVisibleText("Gastos Personales");
+        super.selectElement(creditDestination,"Gastos Personales");
     }
 
     public void libertyCreditCalculate() {

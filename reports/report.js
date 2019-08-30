@@ -17,7 +17,7 @@ formatter.step({
   "keyword": "Given "
 });
 formatter.match({
-  "location": "AvvillasFormStepDefinition.java:33"
+  "location": "AvvillasFormStepDefinition.java:29"
 });
 formatter.result({
   "status": "passed"
@@ -27,7 +27,7 @@ formatter.step({
   "keyword": "When "
 });
 formatter.match({
-  "location": "AvvillasFormStepDefinition.java:39"
+  "location": "AvvillasFormStepDefinition.java:35"
 });
 formatter.result({
   "status": "passed"
@@ -37,7 +37,7 @@ formatter.step({
   "keyword": "Then "
 });
 formatter.match({
-  "location": "AvvillasFormStepDefinition.java:48"
+  "location": "AvvillasFormStepDefinition.java:44"
 });
 formatter.result({
   "status": "passed"
